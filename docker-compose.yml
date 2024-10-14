@@ -1,14 +1,23 @@
-version: "3.8"
+version: '3'
 services:
-  benchmark:
-    container_name: benchmark
-    image: benchmark
-    build:
-      context: .
-      dockerfile: Dockerfile
-    hostname: benchmark
-    restart: always
+  locust-master:
+    build: .
+    container_name: locust-master
     ports:
-      - "8089:8089"
-    command: >
-      bash -c "locust"
+      - "8089:8089"  # Expose Locust web UI
+    volumes:
+      - .:/usr/src/app  # Mount the current directory to the container
+    environment:
+      - LOCUST_MODE=master
+    command: locust --master --host https://benchmark.vitrust.app
+
+  locust-worker:
+    build: .
+    container_name: locust-worker
+    depends_on:
+      - locust-master
+    volumes:
+      - .:/usr/src/app  # Mount the current directory to the container
+    environment:
+      - LOCUST_MODE=worker
+    command: locust --worker --master-host locust-master
