@@ -11,4 +11,4 @@ services:
     ports:
       - "8089:8089"
     command: >
-      bash -c "python3 locustfile.py"
+      bash -c "locust"
