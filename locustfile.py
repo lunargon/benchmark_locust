@@ -1,8 +1,8 @@
 from locust import HttpUser, TaskSet, task, between
+import time
 
 db_data = "odoo_benchmark"
 access_token = "ZSChW4ZpHd9vrTnlaUzXImuIBr3wbJ"
-
 
 # User test
 class UserBehavior(TaskSet):
@@ -41,9 +41,9 @@ class UserBehavior(TaskSet):
             "values": {
                 "name": "khoingu",
                 "phone": "09312321",
-                "email": "khoitran@gmall.com",
-                "login": "trana huy khoi23",
-                "password": "xxxxxxxxx",
+                "email": f"khoitran{time.time()}@gmall.com",
+                "login": f"tran huy khoi ngu{time.time()}",
+                "password": f"{time.time()}",
                 "groups_id": [1],
             },
         }
@@ -66,7 +66,7 @@ class UserBehavior(TaskSet):
             "values": {
                 "name": "khoi!ngu",
                 "phone": "09312321",
-                "email": "khoitran@gmall.com",
+                "email": f"khoitran{time.time()}@gmall.com",
                 "login": "trana huy khoi23",
                 "password": "xxxxxxxxx",
             },
@@ -88,7 +88,7 @@ class StudentBehavior(TaskSet):
             "Authorization": f"Bearer {access_token}",
         }
         self.client.post(
-            f"/api/v2/call?db=odoo_benchmark",
+            "/api/v2/call?db=odoo_benchmark",
             json={
                 "model": "res.partner",
                 "method": "web_search_read",
@@ -158,6 +158,7 @@ class StudentBehavior(TaskSet):
             "Content-Type": "application/json",
             "Authorization": f"Bearer {access_token}",
         }
+
         payload = {
             "model": "res.partner",
             "values": {
@@ -181,7 +182,7 @@ class StudentBehavior(TaskSet):
                 "phone": "0932131231",
                 "mobile": "0933123",
                 "emergency_contact": "xxxxxxxx",
-                "email": "test@gmail.com",
+                "email": f"test{time.time()}@gmail.com",
                 "website": "test.com",
                 "gr_no": "xxxx",
                 "roll_no": 123,
@@ -224,7 +225,7 @@ class StudentBehavior(TaskSet):
                 "phone": "0932131231",
                 "mobile": "0933123",
                 "emergency_contact": "xxxxxxxx",
-                "email": "test@gmail.com",
+                "email": f"test{time.time()}@gmail.com",
                 "website": "test.com",
                 "div": 1,
                 "roll_no": 123,
