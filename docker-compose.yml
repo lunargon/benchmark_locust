@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  pos-controler:
+    container_name: benchmark
+    image: benchmark
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: benchmark
+    restart: always
+    ports:
+      - "8089:8089"
+    command: >
+      bash -c "python3 locustfile.py"
