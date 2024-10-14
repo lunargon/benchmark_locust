@@ -1,7 +1,7 @@
 from locust import HttpUser, TaskSet, task, between
 
 db_data = "odoo_benchmark"
-access_token = "lbSDRzWskhit8b3Gy17SRANkH0fJQD"
+access_token = "ZSChW4ZpHd9vrTnlaUzXImuIBr3wbJ"
 
 # User test
 class UserBehavior(TaskSet):
