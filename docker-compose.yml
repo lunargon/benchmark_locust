@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  pos-controler:
+  benchmark:
     container_name: benchmark
     image: benchmark
     build:
